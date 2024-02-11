@@ -8,4 +8,5 @@ Corporate Ethics Guide
 *	This has implications on what we ask of business and business leaders. 
 
 Sign up to get notifications when I publish new video. 
+
 [Check out my Portfolio](https://eternalspring22.github.io/StocksYouLove/)
