@@ -1,4 +1,4 @@
-# StocksYouLove
+# Stocks You Love
 Corporate Ethics Guide 
 *	I have a goal to write and publish a short story every month.
 *	My stories are about the relationship between business model and ethics.
