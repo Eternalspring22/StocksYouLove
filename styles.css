@@ -1,3 +1,14 @@
 h1 {
   color: #053009;
 }
+img {
+  /* Customize appearance as needed */
+  float: left; /* Or "right" for right alignment */
+  margin-right: 1rem; /* Adjust margin as needed */
+  width: 100px; /* Adjust size as needed */
+}
+
+h1 {
+  /* Adjust your existing h1 styles if needed */
+  margin-top: 0; /* Remove default margin if your logo has margin */
+}
