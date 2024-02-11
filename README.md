@@ -9,4 +9,4 @@ Corporate Ethics Guide
 
 Sign up to get notifications when I publish new video. 
 
-[Check out my Portfolio](https://eternalspring22.github.io/StocksYouLove/)
+[Check out my Landing Page](https://eternalspring22.github.io/StocksYouLove/)
