@@ -102,47 +102,54 @@
       return "";
     }
 
-    form.addEventListener('submit', async (e) => {
-      // If JS is disabled, Formspree still handles the POST & redirect.
-      e.preventDefault();
+   form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-      const err = validate(form);
-      if (err){
-        statusEl.textContent = err;
-        statusEl.className = "status error";
-        return;
-      }
+  const err = validate(form);
+  if (err) {
+    statusEl.textContent = err;
+    statusEl.className = "status error";
+    return;
+  }
 
-      statusEl.textContent = "Submitting…";
-      statusEl.className = "status";
-      submitBtn.disabled = true;
+  statusEl.textContent = "Submitting…";
+  statusEl.className = "status";
+  submitBtn.disabled = true;
 
-      try{
-        const formData = new FormData(form);
-        const resp = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: formData
-        });
-
-        if (resp.ok){
-          form.reset();
-          statusEl.textContent = "Thanks for signing up! Please check your inbox.";
-          statusEl.className = "status success";
-        } else {
-          const data = await resp.json().catch(()=> ({}));
-          statusEl.textContent = (data && data.errors && data.errors[0] && data.errors[0].message)
-            ? data.errors[0].message
-            : "Something went wrong. Please try again.";
-          statusEl.className = "status error";
-        }
-      } catch(e){
-        statusEl.textContent = "Network error. Please try again.";
-        statusEl.className = "status error";
-      } finally {
-        submitBtn.disabled = false;
-      }
+  try {
+    const formData = new FormData(form);
+    const resp = await fetch(form.action, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Accept': 'application/json' },
+      body: formData
     });
+
+    // Try to read any JSON error message from Formspree
+    let data = {};
+    try { data = await resp.json(); } catch (_) {}
+
+    if (resp.ok) {
+      form.reset();
+      statusEl.textContent = "Thanks for signing up! Please check your inbox.";
+      statusEl.className = "status success";
+    } else {
+      const msg =
+        (data && data.errors && data.errors[0] && data.errors[0].message) ||
+        (data && data.message) ||
+        `Form error (${resp.status}). Please try again.`;
+      statusEl.textContent = msg;
+      statusEl.className = "status error";
+    }
+  } catch (e) {
+    // Network/CORS failure – fall back to normal form POST
+    statusEl.textContent = "Network error. Trying fallback…";
+    statusEl.className = "status error";
+    form.submit();
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
 
     // No‑JS fallback: show a success message if redirected with ?thanks=1
     if (new URLSearchParams(location.search).get('thanks') === '1'){
