@@ -1,106 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-  <title>Stocks You Love - Corporate Ethics Guide</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stocks You Love – Corporate Ethics Guide</title>
+  <meta name="description" content="Stories at the intersection of business model and ethics. Subscribe for updates and new videos." />
   <style>
-   // moved to CSS
+    :root{--bg:#0b0f14;--card:#121821;--text:#e8eef6;--muted:#a6b4c3;--accent:#6cc4ff;--error:#ff6b6b;--success:#6ed795}
+    *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+    .container{width:min(960px,92vw);margin:0 auto;padding:24px 0}
+    header{text-align:center;padding-top:32px}
+    .logo{width:96px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);margin-bottom:12px}
+    h1{margin:8px 0 0;font-size:clamp(28px,4vw,40px)}
+    h2{margin:6px 0 0;font-weight:500;color:var(--muted);font-size:clamp(18px,2.5vw,22px)}
+    .intro ul{margin:24px 0;padding-left:20px;color:var(--muted)}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .form{display:grid;gap:12px}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media (min-width:560px){.grid{grid-template-columns:1fr 1fr}}
+    input,textarea,button{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:#0f141b;color:var(--text);font-size:16px}
+    input::placeholder,textarea::placeholder{color:#7c8b9a}
+    button{background:linear-gradient(180deg,#1a9fff,#0072d6);border:none;font-weight:600;cursor:pointer;transition:transform .06s ease,box-shadow .15s ease;box-shadow:0 6px 16px rgba(0,136,255,.35)}
+    button:hover{transform:translateY(-1px)} button:active{transform:translateY(0)}
+    .status{margin:6px 2px 0;font-size:14px;color:var(--muted)} .status.success{color:var(--success)} .status.error{color:var(--error)}
+    .footer{text-align:center;color:var(--muted);padding-bottom:40px}
+    /* Honeypot field (for bots) */
+    .hp{position:absolute !important;left:-9999px !important;width:1px !important;height:1px !important;overflow:hidden !important;opacity:0 !important}
   </style>
 </head>
 <body>
-  <img src="images/SYL.jpg" alt="Stocks You Love Logo">
-  <h1>Stocks You Love</h1>
-  <h2>Corporate Ethics Guide</h2>
-  <ul>
-    <li>I have a goal to write and publish a short story every month.</li>
-    <li>My stories are about the relationship between business model and ethics.</li>
-    <li>I want to show how this relationship affects everyone in the world.</li>
-    <li>I also want to show how we can use our knowledge of the system to change the world for the better.</li>
-    <li>I think we can do this by being mindful of how we spend and invest our money.</li>
-    <li>This has implications on what we ask of business and business leaders.</li>
-  </ul>
-  <h3>Sign up to get notifications when I publish new videos:</h3>
-  <form id="signup-form">
-    <input type="text" name="firstName" placeholder="First Name" required>
-    <input type="text" name="lastName" placeholder="Last Name" required>
-    <input type="email" name="email" placeholder="Email Address" required>
-    <textarea name="message" placeholder="Message (optional)"></textarea>
-    <button type="submit">Sign Up</button>
-  </form>
+  <header class="container">
+    <img class="logo" src="images/SYL.jpg" alt="Stocks You Love Logo" />
+    <h1>Stocks You Love</h1>
+    <h2>Corporate Ethics Guide</h2>
+  </header>
 
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  <main class="container">
+    <section class="intro">
+      <ul>
+        <li>I have a goal to write and publish a short story every month.</li>
+        <li>My stories are about the relationship between business model and ethics.</li>
+        <li>I want to show how this relationship affects everyone in the world.</li>
+        <li>I also want to show how we can use our knowledge of the system to change the world for the better.</li>
+        <li>I think we can do this by being mindful of how we spend and invest our money.</li>
+        <li>This has implications on what we ask of business and business leaders.</li>
+      </ul>
+    </section>
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAxstaETMtOmAlQ7XqL1pJXbIUCyBxJQHw",
-    authDomain: "stocksyouloveguide.firebaseapp.com",
-    projectId: "stocksyouloveguide",
-    storageBucket: "stocksyouloveguide.appspot.com",
-    messagingSenderId: "518147589625",
-    appId: "1:518147589625:web:5b58fb93503a250259a928",
-    measurementId: "G-T2GEPRJC68"
-  };
+    <section class="card">
+      <h3>Get updates when I publish new videos</h3>
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+      <!-- IMPORTANT: This posts to your Formspree endpoint and works even if JS is off -->
+      <form id="signup-form" class="form"
+            action="https://formspree.io/f/xvgqlolq"
+            method="POST" novalidate>
+        <!-- Honeypot (spam protection) -->
+        <label class="hp" for="company">Company</label>
+        <input class="hp" id="company" name="company" autocomplete="off" tabindex="-1" />
+
+        <div class="grid">
+          <input type="text" name="firstName" placeholder="First Name" required />
+          <input type="text" name="lastName" placeholder="Last Name" required />
+        </div>
+        <input type="email" name="email" placeholder="Email Address" required />
+        <textarea name="message" placeholder="Message (optional)" rows="4"></textarea>
+
+        <!-- Optional: subject & redirect for no‑JS success -->
+        <input type="hidden" name="_subject" value="New signup: Stocks You Love" />
+        <input type="hidden" name="_redirect" value="https://eternalspring22.github.io/StocksYouLove/?thanks=1" />
+
+        <button type="submit" id="submitBtn">Sign Up</button>
+        <p id="form-status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="container">
+      <h4>Follow along</h4>
+      <p>I’ll post updates and videos on YouTube while I build the full site.</p>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <small>&copy; <span id="year"></span> Stocks You Love</small>
+  </footer>
 
   <script>
-    const signupForm = document.getElementById('signup-form');
-    signupForm.addEventListener('submit', (event) => {
-      event.preventDefault(); // Prevent default form submission
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Your code to handle form data and send it to a database/email goes here
-      // Example using placeholder data: 
-      // I do not understand how this works...
-      const firstName = signupForm.elements.firstName.value;
-      const lastName = signupForm.elements.lastName.value;
-      const email = signupForm.elements.email.value;
-      const message = signupForm.elements.message.value;
+    // Enhance UX: AJAX submit with success/error messages
+    const form = document.getElementById('signup-form');
+    const statusEl = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submitBtn');
 
-      const data = {
-        firstName,
-        lastName,
-        email,
-        message,
-      };
+    function validate(f){
+      if(!f.firstName.value.trim()) return "Please enter your first name.";
+      if(!f.lastName.value.trim()) return "Please enter your last name.";
+      if(!f.email.value.trim()) return "Please enter your email.";
+      if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(f.email.value.trim())) return "Please enter a valid email.";
+      if(f.company && f.company.value.trim() !== "") return "Spam detected.";
+      return "";
+    }
 
-      console.log('Form data:', data);
-      // Updated for lower case i
+    form.addEventListener('submit', async (e) => {
+      // If JS is disabled, Formspree still handles the POST & redirect.
+      e.preventDefault();
 
-      // Replace this with your actual method for storing and sending data
-      // You can use fetch API or an external library like Axios to send data
+      const err = validate(form);
+      if (err){
+        statusEl.textContent = err;
+        statusEl.className = "status error";
+        return;
+      }
 
-      // PRZ START 
+      statusEl.textContent = "Submitting…";
+      statusEl.className = "status";
+      submitBtn.disabled = true;
 
-      // Do not need to add anything. 
+      try{
+        const formData = new FormData(form);
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
 
-      // PRZ END 
-
-      // Example email notification (change email address and method)
-      const emailContent = `
-        New signup:
-        - Name: ${firstName} ${lastName}
-        - Email: ${email}
-        - Message: ${message}
-      `;
-      fetch('https://example.com/send-email', {
-        method: 'POST',
-        body: JSON.stringify({ email: 'prz.global@gmail.com', content: emailContent }),
-      });
-
-      // Clear form after submission (optional)
-      signupForm.reset();
+        if (resp.ok){
+          form.reset();
+          statusEl.textContent = "Thanks for signing up! Please check your inbox.";
+          statusEl.className = "status success";
+        } else {
+          const data = await resp.json().catch(()=> ({}));
+          statusEl.textContent = (data && data.errors && data.errors[0] && data.errors[0].message)
+            ? data.errors[0].message
+            : "Something went wrong. Please try again.";
+          statusEl.className = "status error";
+        }
+      } catch(e){
+        statusEl.textContent = "Network error. Please try again.";
+        statusEl.className = "status error";
+      } finally {
+        submitBtn.disabled = false;
+      }
     });
+
+    // No‑JS fallback: show a success message if redirected with ?thanks=1
+    if (new URLSearchParams(location.search).get('thanks') === '1'){
+      const el = document.getElementById('form-status');
+      el.textContent = "Thanks for signing up! Please check your inbox.";
+      el.className = "status success";
+    }
   </script>
 </body>
 </html>
