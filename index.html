@@ -76,7 +76,7 @@
 
     <section class="container">
       <h4>Follow along</h4>
-      <p>I’ll post updates and videos on YouTube while I build the full site.</p>
+      <p>I’ll post updates and videos on YouTube while I build the business.</p>
     </section>
   </main>
 
@@ -97,7 +97,7 @@
       if(!f.firstName.value.trim()) return "Please enter your first name.";
       if(!f.lastName.value.trim()) return "Please enter your last name.";
       if(!f.email.value.trim()) return "Please enter your email.";
-      if(!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(f.email.value.trim())) return "Please enter a valid email.";
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.value.trim())) return "Please enter a valid email.";
       if(f.company && f.company.value.trim() !== "") return "Spam detected.";
       return "";
     }
