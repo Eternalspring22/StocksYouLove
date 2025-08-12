@@ -51,15 +51,27 @@
       <h3>Get updates when I publish new videos</h3>
 
       <!-- IMPORTANT: This posts to your Formspree endpoint and works even if JS is off -->
-      <form action="https://formspree.io/f/xvgqlolq" method="POST">
-  <input type="text" name="firstName" placeholder="First Name" required>
-  <input type="text" name="lastName" placeholder="Last Name" required>
-  <input type="email" name="email" placeholder="Email Address" required>
-  <textarea name="message" placeholder="Message (optional)"></textarea>
-  <input type="hidden" name="_subject" value="New signup: Stocks You Love">
-  <input type="hidden" name="_redirect" value="https://eternalspring22.github.io/StocksYouLove/?thanks=1">
-  <button type="submit">Sign Up</button>
-</form>
+      <form id="signup-form" class="form"
+            action="https://formspree.io/f/xvgqlolq"
+            method="POST" novalidate>
+        <!-- Honeypot (spam protection) -->
+        <label class="hp" for="company">Company</label>
+        <input class="hp" id="company" name="company" autocomplete="off" tabindex="-1" />
+
+        <div class="grid">
+          <input type="text" name="firstName" placeholder="First Name" required />
+          <input type="text" name="lastName" placeholder="Last Name" required />
+        </div>
+        <input type="email" name="email" placeholder="Email Address" required />
+        <textarea name="message" placeholder="Message (optional)" rows="4"></textarea>
+
+        <!-- Optional: subject & redirect for no‑JS success -->
+        <input type="hidden" name="_subject" value="New signup: Stocks You Love" />
+        <input type="hidden" name="_redirect" value="https://eternalspring22.github.io/StocksYouLove/?thanks=1" />
+
+        <button type="submit" id="submitBtn">Sign Up</button>
+        <p id="form-status" class="status" role="status" aria-live="polite"></p>
+      </form>
     </section>
 
     <section class="container">
