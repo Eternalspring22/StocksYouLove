@@ -97,7 +97,7 @@
       if(!f.firstName.value.trim()) return "Please enter your first name.";
       if(!f.lastName.value.trim()) return "Please enter your last name.";
       if(!f.email.value.trim()) return "Please enter your email.";
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.value.trim())) return "Please enter a valid email.";
+      if (!f.email.checkValidity()) return "Please enter a valid email.";
       if(f.company && f.company.value.trim() !== "") return "Spam detected.";
       return "";
     }
